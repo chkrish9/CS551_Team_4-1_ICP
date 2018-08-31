@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="" ng-app="WeatherReport">
+<head>
+    <meta t="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Weather Report</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+
+<div ng-controller="report" class="container">
+    <h1 class="display-4 text-center">Welcome to AngularJS Weather Report</h1>
+    <img src="images/weather-logo.png" class="mx-auto d-block"/>
+    <div class="col-sm-12">
+        <!-- Error message display -->
+        <div ng-show="errorMsg" class="mtb-3">
+            <div class="alert alert-danger" role="alert">
+                Please select State and City.
+            </div>
+        </div>
+        <!-- Form to take state and city data -->
+        <form>
+            <div class="form-row">
+                <div class="col-sm-4">
+                    <select class="form-control" ng-model="statecode" id="statecode" ng-change="fillCity()">
+                        <option value="0">--Select State--</option>
+                        <option ng-repeat="objstate in states" value="{{objstate.abb}}">{{objstate.state}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <select class="form-control" ng-model="cityname" id="cityname">
+                        <option value="0">--Select City--</option>
+                        <option ng-repeat="objcity in cities" value="{{objcity.city}}">{{objcity.city}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-primary form-control" ng-click="displayWeather()">
+                        <img src="images/weather-icon.png" class="width-2em"/>Show Weather
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Weather display -->
+    <div id="weather-display" ng-repeat="re in result | limitTo:5">
+        <div class="col-sm-3 float-left">
+            <div class="card bg-light mb-3 mt-3">
+                <div class="card-body">
+                    <img src="{{re.icon_url}}"/>
+                    <p class="card-text">Condition : {{re.condition}}</p>
+                    <p class="card-text">Temperature : {{re.temp.english }} &deg; F</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"
+        type="application/javascript"></script>
+<script src="js/weather-report.js" type="application/javascript"></script>
+</body>
+</html>
