@@ -10,3 +10,7 @@
 6. Brackets.
 7. Ionic CLI.
 8. Node and NPM.
+
+**ICP -2** : Display Weather report based on selected State and City using AngularJs, Weather API and Twiter bootstrap.
+
+![alt text](https://github.com/chkrish9/CS5551_Team_4-1_ICP/blob/master/ICP-2/documentation/screen-5.png "Angular Weather Report")
