@@ -24,19 +24,19 @@
         <!-- Form to take state and city data -->
         <form>
             <div class="form-row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 mb-3 mt-3">
                     <select class="form-control" ng-model="statecode" id="statecode" ng-change="fillCity()">
                         <option value="0">--Select State--</option>
                         <option ng-repeat="objstate in states" value="{{objstate.abb}}">{{objstate.state}}</option>
                     </select>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 mb-3 mt-3">
                     <select class="form-control" ng-model="cityname" id="cityname">
                         <option value="0">--Select City--</option>
                         <option ng-repeat="objcity in cities" value="{{objcity.city}}">{{objcity.city}}</option>
                     </select>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 mb-3 mt-3">
                     <button type="button" class="btn btn-primary form-control" ng-click="displayWeather()">
                         <img src="images/weather-icon.png" class="width-2em"/>Show Weather
                     </button>
@@ -46,7 +46,7 @@
     </div>
     <!-- Weather display -->
     <div id="weather-display" ng-repeat="re in result | limitTo:5">
-        <div class="col-sm-3 float-left">
+        <div class="col-md-3 float-left">
             <div class="card bg-light mb-3 mt-3">
                 <div class="card-body">
                     <img src="{{re.icon_url}}"/>
