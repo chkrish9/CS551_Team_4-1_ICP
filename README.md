@@ -14,3 +14,8 @@
 **ICP -2** : Display Weather report based on selected State and City using AngularJs, Weather API and Twiter bootstrap.
 
 ![alt text](https://github.com/chkrish9/CS5551_Team_4-1_ICP/blob/master/ICP-2/documentation/screen-7.PNG "Angular Weather Report")
+
+**ICP -3** : Display Nutrition info using AngularJs, Nutritionix API, IBM Watson API and Twiter bootstrap.
+
+![alt text](https://github.com/chkrish9/CS5551_Team_4-1_ICP/blob/master/ICP-3/documentation/screen-2.PNG "Angular Nutrition Report")
+
