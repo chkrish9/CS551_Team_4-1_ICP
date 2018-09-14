@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">UMKC Translate App</string>
+    <string name="title_activity_translate">UMKC Translate App</string>
 </resources>

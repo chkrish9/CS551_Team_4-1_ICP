@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="16dp"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Welcome to UMKC Translator"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlue"/>
+
+    <TextView
+        android:id="@+id/lblTranslate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/lblTitle"
+        android:text="Enter the text to translate"/>
+    <EditText
+        android:id="@+id/txtTranslate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblTranslate" />
+    <TextView
+        android:id="@+id/lblLangList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtTranslate"
+        android:layout_marginTop="10dp"
+        android:text="Select the language to translate"/>
+
+    <Spinner
+        android:id="@id/spnLangList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/lblLangList"></Spinner>
+
+    <TextView
+        android:id="@+id/lblTranslateText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spnLangList"
+        android:layout_marginTop="10dp"
+        android:text="Translated Text"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/lblOutPutTranslateText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblTranslateText"
+        android:layout_marginTop="15dp" />
+
+    <Button
+        android:id="@+id/btnTranslate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblOutPutTranslateText"
+        android:layout_centerHorizontal="true"
+        android:text="Translate"
+        android:layout_marginTop="10dp"
+        android:onClick="Translate"/>
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnTranslate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Logout"
+        android:onClick="logout"/>
+
+</RelativeLayout>
