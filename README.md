@@ -19,7 +19,7 @@
 
 ![alt text](https://github.com/chkrish9/CS5551_Team_4-1_ICP/blob/master/ICP-3/documentation/screen-2.PNG "Angular Nutrition Report")
 
-**ICP -3** : Design an Android App with login and translate activity. Use Yandex API to translate the text.
+**ICP -4** : Design an Android App with login and translate activity. Use Yandex API to translate the text.
 
 ![alt text](https://github.com/chkrish9/CS5551_Team_4-1_ICP/blob/master/ICP-4/documentation/screenshots/Screen-2.png "UMKC Translate app")
 
