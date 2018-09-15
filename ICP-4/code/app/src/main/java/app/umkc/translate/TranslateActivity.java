@@ -32,6 +32,7 @@ import okhttp3.Response;
 
 public class TranslateActivity extends AppCompatActivity {
 
+    //Declaring the variable.
     private Map<String, String> langs = new HashMap<String, String>();
     private Spinner spnLangList = null;
     private EditText txtTranslate = null;
@@ -41,57 +42,82 @@ public class TranslateActivity extends AppCompatActivity {
             "c0b0a88bea31ba51f72504cc0cc42cf891ed90d2&text=%s&" +
             "lang=en-%s&[format=plain]&[options=1]&[callback=set]";
 
+    /*
+     * onCreate will call after LoginActivity render.
+     * In this we will load the initial data and set the properties of the controls.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_translate);
+
+        //Setting the Toolbar properties.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Call loadLangList() function to fill the Languages list.
         loadLangList();
+        //Getting all keys from lang maps.
         List<String> langListKeys = new ArrayList<String>(langs.keySet());
 
+        //Setting the adapter for spinner.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, langListKeys);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        //Getting spinner using Id.
         spnLangList = (Spinner) findViewById(R.id.spnLangList);
+        //Adding adapter to spinner.
         spnLangList.setAdapter(adapter);
     }
 
+    /*
+    * Translate method will call when the user clicks translate button in Translate activity.
+    */
     public void Translate(View v) {
+        //Getting controls by id.
         txtTranslate = (EditText) findViewById(R.id.txtTranslate);
         lblOutPutTranslateText = (TextView) findViewById(R.id.lblOutPutTranslateText);
         final TextView lblTransalte = (TextView) findViewById(R.id.lblTranslateText);
 
+        //Getting selected language and entered input..
         String selectedLang = langs.get(spnLangList.getSelectedItem().toString());
         String inputText = txtTranslate.getText().toString();
 
+        //Formatting the URL with entered input and selected language.
         String formatedUrl = String.format(url, inputText, selectedLang);
 
+        //Initialing the OkHttpClient.
         OkHttpClient client = new OkHttpClient();
 
         try {
+            //Creating the request object with url.
             Request request = new Request.Builder()
                     .url(formatedUrl)
                     .build();
+            //Calling the yandex API for translation.
             client.newCall(request).enqueue(new Callback() {
+                //If request fail it will call onFailure method.
                 @Override
                 public void onFailure(Call call, IOException e) {
                     System.out.println(e.getMessage());
                 }
 
+                //If request success it will call onResponse method.
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     final JSONObject jsonResult;
                     final String result = response.body().string();
                     try {
+                        //Converting the result to Json object.
                         jsonResult = new JSONObject(result);
+                        //Getting text array from result.
                         JSONArray convertedTextArray = jsonResult.getJSONArray("text");
                         final String convertedText = convertedTextArray.get(0).toString();
                         Log.d("okHttp", jsonResult.toString());
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                //Setting the Translate label to visible and setting the result.
                                 lblTransalte.setVisibility(View.VISIBLE);
                                 lblOutPutTranslateText.setText(convertedText);
                             }
@@ -107,11 +133,18 @@ public class TranslateActivity extends AppCompatActivity {
 
     }
 
+    /*
+    * Logout method will call when logout button is clicked.
+    * We are redirecting to loginActivity.
+    */
     public void logout(View v) {
         Intent redirect = new Intent(TranslateActivity.this, LoginActivity.class);
         startActivity(redirect);
     }
 
+    /*
+    * loadLangList method will fill the lang map.
+    */
     public void loadLangList() {
         langs.put("Azerbaijan", "az");
         langs.put("Malayalam", "ml");

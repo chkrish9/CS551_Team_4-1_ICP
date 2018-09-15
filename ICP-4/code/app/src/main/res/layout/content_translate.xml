@@ -32,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblTranslate" />
+
     <TextView
         android:id="@+id/lblLangList"
         android:layout_width="match_parent"
@@ -39,7 +40,6 @@
         android:layout_below="@+id/txtTranslate"
         android:layout_marginTop="10dp"
         android:text="Select the language to translate"/>
-
     <Spinner
         android:id="@id/spnLangList"
         android:layout_width="match_parent"
@@ -55,7 +55,6 @@
         android:layout_marginTop="10dp"
         android:text="Translated Text"
         android:visibility="gone"/>
-
     <TextView
         android:id="@+id/lblOutPutTranslateText"
         android:layout_width="match_parent"
