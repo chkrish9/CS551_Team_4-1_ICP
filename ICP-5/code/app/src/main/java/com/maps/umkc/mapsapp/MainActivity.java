@@ -37,11 +37,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+    //Declaring the variables
     private GoogleMap mMap;
     private static final String TAG = "MainActivity";
     private boolean mLocationPermission = false;
     private FusedLocationProviderClient mFusedLocationProviderClient;
 
+    /*
+    * This method will call after the Mainactivity create.
+    * In this we will check the location permission of the app.
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         checkLocationPermission();
     }
 
+    /*
+    * This method will call after Map is ready.
+    * In this we will call the current location of the device.
+    */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -63,6 +72,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    /*
+    * This method will call once the user select the permission either allow or deny.
+    * Once the permission is allow then we are initializing the map.
+    */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         mLocationPermission = false;
@@ -75,12 +88,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    /*
+    * In this method we will initialize the map settings.
+    */
     private void initMap() {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
+    /*
+    * This method will call when the user clicks on display info button.
+    * We will take the user entered location and then we will get details of the location by calling geocoder.getLocationFromName method.
+    */
     public void getLocationDetails(View view){
         EditText place = (EditText) findViewById(R.id.txtLocation);
         Geocoder geocoder = new Geocoder(MainActivity.this);
@@ -96,6 +116,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    /*
+    * In this method we will check the location permission.
+    */
     private void checkLocationPermission() {
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
@@ -112,6 +135,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    /*
+    * In this method we will get the current location details.
+    */
     private void getCurrentLocation() {
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         try{
@@ -137,6 +163,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    /*
+    * In this method we will update the marker and latitude and longitude details.
+    */
     private void updateLocation(LatLng latlng, float zoom){
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng,zoom));
         // Add a marker in Sydney and move the camera
