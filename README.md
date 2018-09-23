@@ -23,3 +23,7 @@
 
 ![alt text](https://github.com/chkrish9/CS5551_Team_4-1_ICP/blob/master/ICP-4/documentation/screenshots/Screen-2.png "UMKC Translate app")
 
+**ICP -5** : Design an Android App to display the user’s current location with a marker on the map along with coordinate details (lat, lng)
+
+![alt text](https://github.com/chkrish9/CS5551_Team_4-1_ICP/blob/master/ICP-5/documentation/screen_3.png "UMKC Location Finder")
+
