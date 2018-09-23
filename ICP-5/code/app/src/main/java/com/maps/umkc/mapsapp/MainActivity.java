@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void updateLocation(LatLng latlng, float zoom){
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng,zoom));
         // Add a marker in Sydney and move the camera
-        mMap.addMarker(new MarkerOptions().position(latlng).title(latlng.latitude+" "+latlng.longitude));
+        mMap.addMarker(new MarkerOptions().position(latlng).title("Latitude : "+latlng.latitude+" "+"Longitude : "+latlng.longitude));
 
         TextView lat = (TextView) findViewById(R.id.lblLatText);
         TextView lng = (TextView) findViewById(R.id.lblLngText);
