@@ -1,36 +1,30 @@
-<!--
-  Generated template for the RegisterPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar>
     <ion-title>Register</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="login-content">
+<ion-content padding class="reg-content">
   <ion-list>
     <ion-item>
       <ion-label floating>Username</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="user.username" name="username"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>First Name</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="user.firstname" name="firstname"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Last Name</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="user.lastname" name="lastname"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Confirm Password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="cnfpassword" name="cnfpassword"></ion-input>
     </ion-item>
   </ion-list>
   <button ion-button full (click)="register()">Submit</button>

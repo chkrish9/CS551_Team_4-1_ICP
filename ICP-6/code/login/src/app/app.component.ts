@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { RegisterPage } from '../pages/register/register';
 import { LoginPage } from '../pages/login/login';
 
 @Component({
@@ -13,9 +12,10 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
+  //Set up the root page. When you run the application this page will show.
   rootPage: any = LoginPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
@@ -25,6 +25,16 @@ export class MyApp {
       { title: 'Home', component: HomePage },
     ];
 
+    //Initial data
+    var users = [
+      {
+        "username": "Guest",
+        "firstname": "",
+        "lastname": "",
+        "password": "guest",
+      }
+    ]
+    localStorage.setItem("users", JSON.stringify(users));
   }
 
   initializeApp() {

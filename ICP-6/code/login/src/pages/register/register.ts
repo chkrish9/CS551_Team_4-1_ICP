@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
-
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,14 +8,54 @@ import { LoginPage } from '../login/login';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user = {
+    "username":"",
+    "firstname":"",
+    "lastname":"",
+    "password":""
+  };
+  cnfpassword:string = "";
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }
-  register(){
-    this.navCtrl.setRoot(LoginPage);
+
+  /*
+    This method will call when the user clicks on Submit button. 
+    In this method we are validating the user entered details and then store them in localstorage.
+  */
+  register() {
+    var users = JSON.parse(localStorage.getItem("users"));
+    if (this.user.username !== "" && this.user.firstname !== "" && this.user.lastname !== "" && this.user.password !== "" && this.cnfpassword !== "") {
+      if(this.user.password === this.cnfpassword){
+      users.push(this.user);
+      localStorage.setItem("users", JSON.stringify(users));
+      this.presentToast("Successfully registered.");
+      this.navCtrl.setRoot(LoginPage);
+      }else{
+        this.presentToast("Password missmatch.");
+      }
+    }else{
+      this.presentToast("Please fill all the details.");
+    }
+  }
+
+  /*
+    This method will show the Toast messages.
+  */
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 }
