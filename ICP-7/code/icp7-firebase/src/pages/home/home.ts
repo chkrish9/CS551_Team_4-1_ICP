@@ -10,38 +10,43 @@ import { AngularFireDatabase } from 'angularfire2/database';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  //Declaring the variables.
   public base64Image: string = "";
-  public dataAr: any[] = []
+  public pics: any[] = [];
+  authId: string = "";
 
+  /*
+    This is constructor of home page. In this method we are getting the all pics of that particular user by passing user uid.
+  */
   constructor(public navCtrl: NavController,
     private fire: AngularFireAuth,
     public fireDb: AngularFireDatabase,
     private toastCtrl: ToastController,
     private camera: Camera,
     private app: App) {
-    this.fire.authState.subscribe(auth => {
-      if (auth.uid !== null) {
-        this.fireDb.list(`images/${auth.uid}`).valueChanges().subscribe(data => {
-          let keys = Object.keys(data);
-          this.dataAr = [];
-          for (let i = 0; i < keys.length; i++) {
-            this.dataAr.push(data[keys[i]]);
-          }
-        });
-      }
-    })
+    this.authId = localStorage.getItem("uid");
+    if (this.authId !== "") {
+      this.fireDb.list(`images/${this.authId}`).valueChanges().subscribe(data => {
+        let keys = Object.keys(data);
+        this.pics = [];
+        for (let i = 0; i < keys.length; i++) {
+          this.pics.push(data[keys[i]]);
+        }
+      });
+    }
   }
 
-  ionViewDidLoad() {
-    this.fire.authState.subscribe(data => {
-      //console.log(data);
-    });
-  }
-
+  /*
+    This logout method this will call when user cliks on logout button. In this method we are navigating the user to login page.
+  */
   logout() {
     this.app.getRootNav().setRoot(LoginPage);
   }
 
+  /*
+    This method will call when the user clicks on take photo button. 
+    In this we are opening the camera and once user clicks the pic then we are saving the picture in firebase.
+  */
   takePhoto() {
     const options: CameraOptions = {
       quality: 50,
@@ -54,24 +59,24 @@ export class HomePage {
 
     this.camera.getPicture(options).then((imageData) => {
       this.base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.fire.authState.subscribe(auth => {
-        if (auth.uid !== null) {
-        this.fireDb.list(`images/${auth.uid}`).push(this.base64Image)
+      let push = true;
+      if (this.authId !== null && push === true) {
+        this.fireDb.list(`images/${this.authId}`).push(this.base64Image)
           .then(() => {
             this.presentToast("Image Saved.");
+            push = false;
           });
-        }
-      })
-     
+      }
+
     }, (err) => {
-      // Handle error
+      console.log(err);
     });
 
   }
 
   /*
-     This method will show the Toast messages.
-   */
+    This method will show the Toast messages.
+  */
   presentToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,

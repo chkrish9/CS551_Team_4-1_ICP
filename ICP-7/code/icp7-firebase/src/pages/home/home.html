@@ -7,5 +7,5 @@
 <ion-content padding>
     <button ion-button full (click)="logout()">Logout</button>
     <button ion-button full (click)="takePhoto()">Take photo</button>
-    <img [src]="a" height="50px" width="50px" *ngFor="let a of dataAr"/>
+    <img [src]="pic" *ngFor="let pic of pics" class="thumbnails"/>
 </ion-content>
