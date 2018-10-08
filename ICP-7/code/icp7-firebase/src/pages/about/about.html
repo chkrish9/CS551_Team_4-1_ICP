@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      User Details
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="about-content">
+  <ion-list>
+    <ion-item>
+      <ion-label floating>First name</ion-label>
+      <ion-input type="text" [(ngModel)]="firstname" name="firstname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Last name</ion-label>
+      <ion-input type="text" [(ngModel)]="lastname" name="lastname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text" [(ngModel)]="username" name="username"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button full (click)="save()">
+    Login
+  </button>
+
+</ion-content>
