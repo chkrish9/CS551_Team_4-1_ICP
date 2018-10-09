@@ -27,6 +27,10 @@
 
 ![alt text](https://github.com/chkrish9/CS5551_Team_4-1_ICP/blob/master/ICP-5/documentation/screen_3.png "UMKC Location Finder")
 
-**ICP -6** : ICP - 6 Design login, register and home pages using ionic.
+**ICP -6** : Design login, register and home pages using ionic.
 
 ![alt text](https://github.com/chkrish9/CS5551_Team_4-1_ICP/blob/master/ICP-6/documentation/1.Login.jpeg "Ionic Login page")
+
+**ICP -7** : Design login, home(Take photo and store photo in firebase), and user details(Store in firebase) pages.
+
+![alt text](https://github.com/chkrish9/CS5551_Team_4-1_ICP/blob/master/ICP-7/documentation/Screen-1.jpeg "Ionic Login page with firebase")
