@@ -34,3 +34,7 @@
 **ICP -7** : Design login, home(Take photo and store photo in firebase), and user details(Store in firebase) pages.
 
 ![alt text](https://github.com/chkrish9/CS5551_Team_4-1_ICP/blob/master/ICP-7/documentation/Screen-1.jpeg "Ionic Login page with firebase")
+
+**ICP -8** : Design an application using the client-server model from the MEAN stack framework.
+
+![alt text](https://github.com/chkrish9/CS5551_Team_4-1_ICP/blob/master/ICP-8/documentation/Screen2.PNG "MEAN Stack")
