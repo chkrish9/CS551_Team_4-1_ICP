@@ -29,9 +29,9 @@ app.get("/", (req, res, next) => {
         }
         const db = client.db(dbName);
         //Fectching the data
-        db.collection('books').find().toArray(function (err, result) {
+        db.collection('students').find().toArray(function (err, result) {
             if (err) {
-                res.write("fetching  books failed");
+                res.write("fetching  students failed");
                 res.end();
             } else {
 
@@ -41,7 +41,7 @@ app.get("/", (req, res, next) => {
     });
 });
 
-//Post method is used to add the book in the database.
+//Post method is used to add the student in the database.
 app.post("/create", (req, res, next) => {
     //Connecting to database
     MongoClient.connect(url, { useNewUrlParser: true },function (err, client) {
@@ -53,12 +53,12 @@ app.post("/create", (req, res, next) => {
         const db = client.db(dbName);
         console.log(req.body);
         //Inserting the record in the database.
-        db.collection('books').insertOne(req.body, function (err, result) {
+        db.collection('students').insertOne(req.body, function (err, result) {
             if (err) {
                 res.send("Registration Failed, Error While Registering "+err);
                 res.end();
             }
-            res.send("Inserted a document into the books collection.");
+            res.send("Inserted a document into the students collection.");
         });
     });
 });
@@ -75,7 +75,7 @@ app.put("/update/:id", (req, res, next) => {
         const db = client.db(dbName);
         console.log(req.body);
         //Updating the record using id.
-        db.collection('books').updateOne({_id:ObjectId( req.params.id)},{ $set: req.body }, function (err, result) {
+        db.collection('students').updateOne({_id:ObjectId( req.params.id)},{ $set: req.body }, function (err, result) {
             if (err) {
                 res.send("Error while updating"+err);
                 res.end();
@@ -98,7 +98,7 @@ app.delete("/delete/:id", (req, res, next) => {
         const db = client.db(dbName);
         console.log(req.params.id);
         //Deleteing the record.
-        db.collection('books').deleteOne({_id:ObjectId( req.params.id)}, function (err, result) {
+        db.collection('students').deleteOne({_id:ObjectId( req.params.id)}, function (err, result) {
             if (err) {
                 res.send("Error while deleting : "+err);
                 res.end();
