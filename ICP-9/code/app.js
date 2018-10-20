@@ -6,10 +6,10 @@ const MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
 // Connection URL
-const url = 'mongodb://ase:welcome@123@ds137283.mlab.com:37283/ase';
+const url = 'mongodb://<dbuser>:<dbpassword>@dsxxxxxx.mlab.com:portnumb/dbname';
 
 // Database Name
-const dbName = 'ase';
+const dbName = 'dbname';
 
 //Body Parser is used to parse the incomeing request.
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,10 +21,10 @@ app.use(cors());
 //Get method is used to fetch the data from database.
 app.get("/", (req, res, next) => {
     //Connecting the mongodb
-    MongoClient.connect(url, function (err, client) {
+    MongoClient.connect(url,{ useNewUrlParser: true }, function (err, client) {
         //If connection failed the it will go to if condition.
         if (err) {
-            res.write("connecting to Database failed");
+            res.send(JSON.stringify(err));
             res.end();
         }
         const db = client.db(dbName);
