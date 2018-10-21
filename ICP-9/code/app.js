@@ -108,6 +108,33 @@ app.delete("/delete/:id", (req, res, next) => {
     });
 });
 
+//Get method is used to fetch the data from database.
+app.get("/search", (req, res, next) => {
+    console.log(req.query);
+    //Connecting the mongodb
+    MongoClient.connect(url,{ useNewUrlParser: true }, function (err, client) {
+        //If connection failed the it will go to if condition.
+        if (err) {
+            res.send(JSON.stringify(err));
+            res.end();
+        }
+        const db = client.db(dbName);
+        var searchString = {};
+        searchString[req.query["search"]] ={ $eq:  req.query["term"] } ;
+        console.log(searchString);
+        //Fectching the data
+        db.collection('students').find(searchString).toArray(function (err, result) {
+            if (err) {
+                res.write("fetching  students failed");
+                res.end();
+            } else {
+
+                res.send(JSON.stringify(result));
+            }
+        });
+    });
+});
+
 //Created the node server adn listing at port 3001 
 app.listen("3001", () => {
     console.log("localhost:3001");
