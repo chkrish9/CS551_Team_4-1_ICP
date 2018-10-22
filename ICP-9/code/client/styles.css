@@ -2,7 +2,11 @@
     margin-top:10px; 
 }
 body{
-    background: deepskyblue;
+    background: url("background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .font-2em{

@@ -56,6 +56,11 @@ app.controller("studentCtrl", function ($scope, $http) {
             data: student
         }).then(function successCallback(response) {
             console.log(response.data);
+            $scope.data.studentName = "";
+            $scope.data.minor="";
+            $scope.data.course="";
+            $scope.data.major="";
+            $scope.data.classId="";
             $scope.getData();
         }, function errorCallback(response) {
             console.log(response);

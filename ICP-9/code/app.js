@@ -6,10 +6,10 @@ const MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
 // Connection URL
-const url = 'mongodb://<dbuser>:<dbpassword>@dsxxxxxx.mlab.com:portnumb/dbname';
+const url = 'mongodb://admin:abc123@ds137283.mlab.com:37283/ase';
 
 // Database Name
-const dbName = 'dbname';
+const dbName = 'ase';
 
 //Body Parser is used to parse the incomeing request.
 app.use(bodyParser.urlencoded({ extended: false }));
